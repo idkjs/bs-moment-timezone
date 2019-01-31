@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/reasonml-community/bs-moment.svg?branch=master)](https://travis-ci.org/reasonml-community/bs-moment)
 [![npm](https://img.shields.io/npm/v/bs-moment.svg)](https://www.npmjs.com/package/bs-moment)
 
-[BuckleScript](https://github.com/bloomberg/bucklescript) bindings for [Moment.js](https://momentjs.com/).
+[BuckleScript](https://github.com/bloomberg/bucklescript) bindings for [Moment Timezone](https://momentjs.com/timezone/).
 
 ## Status
 
