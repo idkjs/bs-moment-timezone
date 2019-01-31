@@ -19,7 +19,6 @@ module Duration = {
   [@bs.send] external years: t => int = "";
   [@bs.send] external asYears: t => float = "";
   [@bs.send] external toJSON: t => string = "";
-  [@bs.send] external tz: t => string => t = "";
   [@bs.send.pipe: t]
   external asUnitOfTime:
     (
@@ -283,6 +282,7 @@ module Moment = {
   [@bs.send] external toJSON: t => string = "";
   [@bs.send] external toDate: t => Js.Date.t = "";
   [@bs.send] external toUnix: t => int = "unix";
+  [@bs.send] external tz: t => string => t = "";
 };
 
 /* parse */

@@ -486,7 +486,8 @@ let () =
           /* The result of isDST depends on the time zone of the host system so
              we just assert that it is true or false */
           let validValues = [|true, false|];
-          expect(validValues) |> toContain(moment("2016-01-01T00:00:00") |> Moment.isDST)
+          expect(validValues)
+          |> toContain(moment("2016-01-01T00:00:00") |> Moment.isDST);
         });
         test("leap year", () =>
           expect(moment("2016-01-01") |> Moment.isLeapYear) |> toBe(true)
@@ -662,6 +663,16 @@ let () =
         test("#weekday", () =>
           expect(moment("2017-01-02 03:04:05.678") |> Moment.weekday)
           |> toBe(1)
+        );
+        test("#tz", () =>
+          expect(
+            Moment.isSame(
+              moment("2017-01-02 10:00:00Z")
+              ->Moment.tz("Australia/Melbourne"),
+              moment("2017-01-02 21:00:00+11:00"),
+            ),
+          )
+          |> toBe(true)
         );
       }
     ),
