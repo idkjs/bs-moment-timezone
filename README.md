@@ -1,18 +1,7 @@
-# bs-moment
+# bs-moment-timezone
 
-[![Build Status](https://travis-ci.org/reasonml-community/bs-moment.svg?branch=master)](https://travis-ci.org/reasonml-community/bs-moment)
-[![npm](https://img.shields.io/npm/v/bs-moment.svg)](https://www.npmjs.com/package/bs-moment)
+[![npm](https://img.shields.io/npm/v/bs-moment-timezone.svg)](https://www.npmjs.com/package/bs-moment-timezone)
 
-[BuckleScript](https://github.com/bloomberg/bucklescript) bindings for [Moment Timezone](https://momentjs.com/timezone/).
+[BuckleScript](https://github.com/bucklescript/bucklescript) bindings for [Moment Timezone](https://momentjs.com/timezone/).
 
-## Status
-
-This package is still 🚧 WIP 🚧, but new bindings are added *as needed* instead of actively. Feel free to create an issue or PR if you find anything missing.
-
-## Mutations
-
-This binding takes an opinionated approach to mutations, e.g. `moment().add`, `moment().startOf`, and bind them with names like `mutableAdd` and `mutableStartOf`. To compensate that, there's an immutable version named `add` and `startOf` which takes a `moment().clone` first before applying the mutations.
-
-## Deprecations
-
-Deprecated methods (e.g. `moment().days` in favor of `moment().day`) are not included in this binding.
+This package is derived from [bs-moment](https://github.com/reasonml-community/bs-moment). It adds support for the `tz` function on Moment instances and depends on `moment-timezone` instead of `moment`.

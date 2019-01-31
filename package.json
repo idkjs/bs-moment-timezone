@@ -1,10 +1,10 @@
 {
-  "name": "bs-moment",
+  "name": "bs-moment-timezone",
   "version": "0.4.2",
   "description": "BuckleScript bindings for Moment.js with timezone support",
   "main": "lib/js/src/MomentRe.js",
-  "repository": "git@github.com:BuckleTypes/bs-moment.git",
-  "author": "Jiayu Liu <jimexist@gmail.com>",
+  "repository": "https://github.com/greensync/bs-moment.git",
+  "author": "GreenSync Developers <developers-inbox@greensync.com.au>",
   "license": "MIT",
   "keywords": [
     "reason",
