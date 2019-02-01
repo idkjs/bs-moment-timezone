@@ -1,6 +1,6 @@
 open Jest;
 
-open MomentRe;
+open MomentTz;
 
 let isJsDateValid: Js.Date.t => bool = [%bs.raw
   {|
@@ -591,12 +591,12 @@ let () =
         );
         test("#utc", () =>
           expect(
-            momentNow() |> MomentRe.Moment.utc("2018-01-22") |> Moment.isValid,
+            momentNow() |> Moment.utc("2018-01-22") |> Moment.isValid,
           )
           |> toBe(true)
         );
         test("#defaultUtc", () =>
-          expect(momentNow() |> MomentRe.Moment.defaultUtc |> Moment.isValid)
+          expect(momentNow() |> Moment.defaultUtc |> Moment.isValid)
           |> toBe(true)
         );
         test("#locale", () =>
