@@ -2,7 +2,7 @@
   "name": "bs-moment-timezone",
   "version": "0.5.0",
   "description": "BuckleScript bindings for Moment.js with timezone support",
-  "main": "lib/js/src/MomentRe.js",
+  "main": "lib/js/src/MomentTz.js",
   "repository": "https://github.com/greensync/bs-moment.git",
   "author": "GreenSync Developers <developers-inbox@greensync.com.au>",
   "license": "MIT",

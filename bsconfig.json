@@ -1,5 +1,5 @@
 {
-  "name": "bs-moment",
+  "name": "bs-moment-timezone",
   "bsc-flags": ["-bs-super-errors"],
   "sources": [
     {
