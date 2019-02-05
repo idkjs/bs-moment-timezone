@@ -221,6 +221,12 @@ module Moment = {
     mutableSetYear(clone, year);
     clone;
   };
+  [@bs.send] external mutableSetTz: (t, string) => unit = "tz";
+  let setTz = (tz, moment) => {
+    let clone = clone(moment);
+    mutableSetTz(clone, tz);
+    clone;
+  };
   [@bs.send.pipe: t]
   external get:
     (
@@ -250,6 +256,7 @@ module Moment = {
   [@bs.send.pipe: t] external month: int = "";
   [@bs.send.pipe: t] external year: int = "";
   [@bs.send.pipe: t] external weekday: int = "";
+  [@bs.send.pipe: t] external tz: Js.undefined(string) = "";
   [@bs.send] external isValid: t => bool = "";
   [@bs.send] external isBefore: (t, t) => bool = "";
   [@bs.send] external isAfter: (t, t) => bool = "";
@@ -282,28 +289,33 @@ module Moment = {
   [@bs.send] external toJSON: t => string = "";
   [@bs.send] external toDate: t => Js.Date.t = "";
   [@bs.send] external toUnix: t => int = "unix";
-  [@bs.send] external tz: t => string => t = "";
 };
 
 /* parse */
-[@bs.module] external momentNow: unit => Moment.t = "moment";
+[@bs.module] external momentNow: unit => Moment.t = "moment-timezone";
 
-[@bs.module] external momentDefaultFormat: string => Moment.t = "moment";
-
-[@bs.module]
-external momentWithFormat: (string, string) => Moment.t = "moment";
-
-[@bs.module] external momentWithDate: Js.Date.t => Moment.t = "moment";
+[@bs.module] external momentDefaultFormat: string => Moment.t = "moment-timezone";
 
 [@bs.module]
-external momentWithFormats: (string, list(string)) => Moment.t = "moment";
+external momentWithFormat: (string, string) => Moment.t = "moment-timezone";
 
-[@bs.module] external momentWithTimestampMS: float => Moment.t = "moment";
+[@bs.module] external momentWithDate: Js.Date.t => Moment.t = "moment-timezone";
 
-[@bs.module] external momentWithComponents: list(int) => Moment.t = "moment";
+[@bs.module]
+external momentWithFormats: (string, list(string)) => Moment.t = "moment-timezone";
+
+[@bs.module] external momentWithTimestampMS: float => Moment.t = "moment-timezone";
+
+[@bs.module] external momentWithComponents: list(int) => Moment.t = "moment-timezone";
 
 let momentWithUnix = (timestamp: int) =>
   momentWithTimestampMS(float_of_int(timestamp) *. 1000.0);
+
+[@bs.module "moment-timezone"] external momentWithTz: (string, string) => Moment.t = "tz";
+[@bs.module "moment-timezone"] external momentWithDateAndTz: (Js.Date.t, string) => Moment.t = "tz";
+[@bs.module "moment-timezone"] external momentWithTimestampMSAndTz: (float, string) => Moment.t = "tz";
+let momentWithUnixAndTz = (timestamp: int, tz) =>
+  momentWithTimestampMSAndTz(float_of_int(timestamp) *. 1000.0, tz);
 
 [@bs.send]
 external diff:

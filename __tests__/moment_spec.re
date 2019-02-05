@@ -476,6 +476,29 @@ let () =
           )
           |> toBe(true)
         );
+        test("#mutableSetTz", () =>
+          expect(
+            Moment.isSame(
+              moment("2017-01-02 21:00:00+11:00"),
+              {
+                let original = moment("2017-01-02 10:00:00Z");
+                Moment.mutableSetTz(original, "Australia/Melbourne");
+                original;
+              },
+            ),
+          )
+          |> toBe(true)
+        );
+        test("#setTz", () =>
+          expect(
+            Moment.isSame(
+              moment("2017-01-02 10:00:00Z")
+              |> Moment.setTz("Australia/Melbourne"),
+              moment("2017-01-02 21:00:00+11:00"),
+            ),
+          )
+          |> toBe(true)
+        );
         test("#isValid", () =>
           expect(moment("2017-01-01") |> Moment.isValid) |> toBe(true)
         );
@@ -535,6 +558,50 @@ let () =
         test(".now", () =>
           expect(momentNow() |> Moment.isValid) |> toBe(true)
         );
+        describe("instantiation with timezone", () => {
+          test("from string", () =>
+            expect(
+              Moment.isSame(
+                momentWithTz("2017-04-01 21:00", "Australia/Melbourne"),
+                moment("2017-04-01 21:00:00+11:00"),
+              ),
+            )
+            |> toBe(true)
+          );
+          test("from date", () =>
+            expect(
+              Moment.isSame(
+                momentWithDateAndTz(
+                  Js.Date.fromString("6 Mar 2017 21:22:23"),
+                  "Australia/Melbourne",
+                ),
+                moment("2017-03-06 21:22:23+11:00"),
+              ),
+            )
+            |> toBe(true)
+          );
+          test("momentWithTimestampMS (float)", () =>
+            expect(
+              Moment.isSame(
+                moment("2017-06-12T18:30:00+02:00"),
+                momentWithTimestampMSAndTz(
+                  Int64.of_string("1497285000000") |> Int64.to_float,
+                  "Etc/GMT+2",
+                ),
+              ),
+            )
+            |> toBe(true)
+          );
+          test("momentWithUnix (int)", () =>
+            expect(
+              Moment.isSame(
+                moment("2017-03-07 08:22:23+1100"),
+                momentWithUnixAndTz(1488835343, "EST"),
+              ),
+            )
+            |> toBe(true)
+          );
+        });
         test("#isSame", () =>
           expect(Moment.isSame(moment("2016-01-01"), moment("2016-01-01")))
           |> toBe(true)
@@ -590,9 +657,7 @@ let () =
           |> toContainString("2016-01-01")
         );
         test("#utc", () =>
-          expect(
-            momentNow() |> Moment.utc("2018-01-22") |> Moment.isValid,
-          )
+          expect(momentNow() |> Moment.utc("2018-01-22") |> Moment.isValid)
           |> toBe(true)
         );
         test("#defaultUtc", () =>
@@ -664,15 +729,16 @@ let () =
           expect(moment("2017-01-02 03:04:05.678") |> Moment.weekday)
           |> toBe(1)
         );
-        test("#tz", () =>
+        test("#tz with timezone", () =>
           expect(
-            Moment.isSame(
-              moment("2017-01-02 10:00:00Z")
-              ->Moment.tz("Australia/Melbourne"),
-              moment("2017-01-02 21:00:00+11:00"),
-            ),
+            momentWithTz("2017-01-02 21:00:00", "Australia/Victoria")
+            |> Moment.tz,
           )
-          |> toBe(true)
+          |> toBe(Js.Undefined.return("Australia/Victoria"))
+        );
+        test("#tz without timezone", () =>
+          expect(moment("2017-01-02 21:00:00+11:00") |> Moment.tz)
+          |> toBeUndefined
         );
       }
     ),
