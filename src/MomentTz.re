@@ -58,7 +58,8 @@ external duration:
   Duration.t =
   "";
 
-[@bs.module "moment-timezone"] external durationMillis: int => Duration.t = "duration";
+[@bs.module "moment-timezone"]
+external durationMillis: int => Duration.t = "duration";
 
 [@bs.module "moment-timezone"]
 external durationFormat: string => Duration.t = "duration";
@@ -257,6 +258,7 @@ module Moment = {
   [@bs.send.pipe: t] external year: int = "";
   [@bs.send.pipe: t] external weekday: int = "";
   [@bs.send.pipe: t] external tz: Js.undefined(string) = "";
+  [@bs.send.pipe: t] external utcOffset: int = "";
   [@bs.send] external isValid: t => bool = "";
   [@bs.send] external isBefore: (t, t) => bool = "";
   [@bs.send] external isAfter: (t, t) => bool = "";
@@ -294,26 +296,34 @@ module Moment = {
 /* parse */
 [@bs.module] external momentNow: unit => Moment.t = "moment-timezone";
 
-[@bs.module] external momentDefaultFormat: string => Moment.t = "moment-timezone";
+[@bs.module]
+external momentDefaultFormat: string => Moment.t = "moment-timezone";
 
 [@bs.module]
 external momentWithFormat: (string, string) => Moment.t = "moment-timezone";
 
-[@bs.module] external momentWithDate: Js.Date.t => Moment.t = "moment-timezone";
+[@bs.module]
+external momentWithDate: Js.Date.t => Moment.t = "moment-timezone";
 
 [@bs.module]
-external momentWithFormats: (string, list(string)) => Moment.t = "moment-timezone";
+external momentWithFormats: (string, list(string)) => Moment.t =
+  "moment-timezone";
 
-[@bs.module] external momentWithTimestampMS: float => Moment.t = "moment-timezone";
+[@bs.module]
+external momentWithTimestampMS: float => Moment.t = "moment-timezone";
 
-[@bs.module] external momentWithComponents: list(int) => Moment.t = "moment-timezone";
+[@bs.module]
+external momentWithComponents: list(int) => Moment.t = "moment-timezone";
 
 let momentWithUnix = (timestamp: int) =>
   momentWithTimestampMS(float_of_int(timestamp) *. 1000.0);
 
-[@bs.module "moment-timezone"] external momentWithTz: (string, string) => Moment.t = "tz";
-[@bs.module "moment-timezone"] external momentWithDateAndTz: (Js.Date.t, string) => Moment.t = "tz";
-[@bs.module "moment-timezone"] external momentWithTimestampMSAndTz: (float, string) => Moment.t = "tz";
+[@bs.module "moment-timezone"]
+external momentWithTz: (string, string) => Moment.t = "tz";
+[@bs.module "moment-timezone"]
+external momentWithDateAndTz: (Js.Date.t, string) => Moment.t = "tz";
+[@bs.module "moment-timezone"]
+external momentWithTimestampMSAndTz: (float, string) => Moment.t = "tz";
 let momentWithUnixAndTz = (timestamp: int, tz) =>
   momentWithTimestampMSAndTz(float_of_int(timestamp) *. 1000.0, tz);
 
