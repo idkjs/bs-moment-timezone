@@ -258,7 +258,7 @@ module Moment = {
   [@bs.send.pipe: t] external year: int = "";
   [@bs.send.pipe: t] external weekday: int = "";
   [@bs.send.pipe: t] external tz: Js.undefined(string) = "";
-  [@bs.send.pipe: t] external utcOffset: int = "";
+  [@bs.send] external utcOffset: t => int = "";
   [@bs.send] external isValid: t => bool = "";
   [@bs.send] external isBefore: (t, t) => bool = "";
   [@bs.send] external isAfter: (t, t) => bool = "";
