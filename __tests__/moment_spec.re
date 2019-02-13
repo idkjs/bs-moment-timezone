@@ -740,6 +740,10 @@ let () =
           expect(moment("2017-01-02 21:00:00+11:00") |> Moment.tz)
           |> toBeUndefined
         );
+        test("#utcOffset", () =>
+          expect(moment("2017-01-02 21:00:00+11:00") |> Moment.utcOffset)
+          |> toBe(660)
+        );
       }
     ),
   );
