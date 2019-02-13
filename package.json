@@ -1,6 +1,6 @@
 {
   "name": "bs-moment-timezone",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "BuckleScript bindings for Moment.js with timezone support",
   "main": "lib/js/src/MomentTz.js",
   "repository": "https://github.com/greensync/bs-moment-timezone.git",
