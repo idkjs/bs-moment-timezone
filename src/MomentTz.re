@@ -311,10 +311,10 @@ external momentWithFormats: (string, array(string)) => Moment.t = "moment-timezo
 
 [@bs.module] external momentWithComponents: list(int) => Moment.t = "moment-timezone";
 
-[@bs.module "moment"]
+[@bs.module "moment-timezone"]
 external momentUtcWithFormats: (string, array(string)) => Moment.t = "utc";
 
-[@bs.module "moment"]
+[@bs.module "moment-timezone"]
 external momentUtcDefaultFormat: string => Moment.t = "utc";
 
 let momentWithUnix = (timestamp: int) =>
