@@ -6,8 +6,6 @@ services:
     build:
       context: .
       target: base
-    environment:
-      TZ: ":/usr/share/zoneinfo/Etc/GMT-11"
     volumes:
       - .:/app
       - node-10-modules-cache:/app/node_modules
