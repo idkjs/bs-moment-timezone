@@ -1,5 +1,6 @@
 # bs-moment-timezone
 
+[![Build Status](https://travis-ci.org/greensync/bs-moment-timezone.svg?branch=master)](https://travis-ci.org/greensync/bs-moment-timezone)
 [![npm](https://img.shields.io/npm/v/bs-moment-timezone.svg)](https://www.npmjs.com/package/bs-moment-timezone)
 
 [BuckleScript](https://github.com/bucklescript/bucklescript) bindings for [Moment Timezone](https://momentjs.com/timezone/).

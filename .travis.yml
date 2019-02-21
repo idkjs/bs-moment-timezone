@@ -6,6 +6,3 @@ node_js:
   - "6"
 
 cache: yarn
-
-notifications:
-  webhooks: "https://www.travisbuddy.com/"
