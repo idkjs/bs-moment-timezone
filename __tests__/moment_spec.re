@@ -572,7 +572,7 @@ let () =
             expect(
               Moment.isSame(
                 momentWithDateAndTz(
-                  Js.Date.fromString("6 Mar 2017 21:22:23"),
+                  Js.Date.fromString("6 Mar 2017 21:22:23+1100"),
                   "Australia/Melbourne",
                 ),
                 moment("2017-03-06 21:22:23+11:00"),
@@ -741,7 +741,7 @@ let () =
           |> toBeUndefined
         );
         test("#utcOffset", () =>
-          expect(moment("2017-01-02 21:00:00+11:00") |> Moment.utcOffset)
+          expect(momentWithTz("2017-01-02 21:00:00", "Etc/GMT-11") |> Moment.utcOffset)
           |> toBe(660)
         );
       }
