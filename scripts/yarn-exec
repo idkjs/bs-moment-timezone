@@ -1,0 +1,4 @@
+#! /bin/bash
+
+yarn check >/dev/null || yarn install
+exec "${@-bash}"

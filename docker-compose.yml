@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+
+  dev:
+    build:
+      context: .
+      target: base
+    environment:
+      TZ: ":/usr/share/zoneinfo/Etc/GMT-11"
+    volumes:
+      - .:/app
+      - node-10-modules-cache:/app/node_modules
+    working_dir: /app
+    entrypoint: /app/scripts/yarn-exec
+    command: bash
+
+volumes:
+  node-10-modules-cache: ~
