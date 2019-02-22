@@ -729,6 +729,84 @@ let () =
           expect(moment("2017-01-02 03:04:05.678") |> Moment.weekday)
           |> toBe(1)
         );
+        test("#startOf week", () => {
+          let inputDate = moment("2017-01-10 03:04:05.678");
+          let expected = moment("2017-01-08T00:00:00.000");
+
+          expect(Moment.isSame(expected, Moment.startOf(`week, inputDate)))
+          |> toBe(true);
+        });
+        test("#startOf isoWeek", () => {
+          let inputDate = moment("2017-01-10 03:04:05.678");
+          let expected = moment("2017-01-09T00:00:00.000");
+
+          expect(
+            Moment.isSame(expected, Moment.startOf(`isoWeek, inputDate)),
+          )
+          |> toBe(true);
+        });
+        test("#endOf week", () => {
+          let inputDate = moment("2017-01-10 03:04:05.678");
+          let expected = moment("2017-01-14T23:59:59.999");
+
+          expect(Moment.isSame(expected, Moment.endOf(`week, inputDate)))
+          |> toBe(true);
+        });
+        test("#endOf isoWeek", () => {
+          let inputDate = moment("2017-01-10 03:04:05.678");
+          let expected = moment("2017-01-15T23:59:59.999");
+
+          expect(Moment.isSame(expected, Moment.endOf(`isoWeek, inputDate)))
+          |> toBe(true);
+        });
+
+        test("#moment (format defined)", () => {
+          let format = "DD-MM-YYYY HH : ss";
+          let dateStr = "10-01-2017 03 : 04";
+
+          expect(
+            moment(~format=[|format|], dateStr) |> Moment.format(format),
+          )
+          |> toBe(dateStr);
+        });
+
+        test("#momentUtc Z (default format)", () => {
+          let dateStr = "2017-01-10T03:04";
+
+          expect(
+            momentUtc(dateStr ++ "Z") |> Moment.format("YYYY-MM-DDTHH:mm"),
+          )
+          |> toBe(dateStr);
+        });
+
+        test("#momentUtc no Z (default format)", () => {
+          let dateStr = "2017-01-10T03:04";
+
+          expect(momentUtc(dateStr) |> Moment.format("YYYY-MM-DDTHH:mm"))
+          |> toBe(dateStr);
+        });
+
+        test("#momentUtc Z (format defined)", () => {
+          let format = "DD-MM-YYYY HH : ss";
+          let dateStr = "10-01-2017 03 : 04";
+
+          expect(
+            momentUtc(~format=[|format|], dateStr ++ "Z")
+            |> Moment.format(format),
+          )
+          |> toBe(dateStr);
+        });
+
+        test("#momentUtc no Z (format defined)", () => {
+          let format = "DD-MM-YYYY HH : ss";
+          let dateStr = "10-01-2017 03 : 04";
+
+          expect(
+            momentUtc(~format=[|format|], dateStr) |> Moment.format(format),
+          )
+          |> toBe(dateStr);
+        });
+
         test("#tz with timezone", () =>
           expect(
             momentWithTz("2017-01-02 21:00:00", "Australia/Victoria")
