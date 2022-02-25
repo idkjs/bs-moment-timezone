@@ -10,6 +10,5 @@
       "type": "dev"
     }
   ],
-  "bs-dev-dependencies": ["@glennsl/bs-jest"],
-  "refmt": 3
+  "bs-dev-dependencies": ["@glennsl/bs-jest"]
 }
